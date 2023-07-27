@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testapp/InteractPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BasicsPage(),
+      home: InteractPage(),
     );
   }
 }
@@ -83,6 +84,8 @@ class BasicsPage extends StatelessWidget {
     ),
     // Add more posts here...
   ];
+
+  BasicsPage({super.key});
 
   @override
   Widget build(BuildContext context){
