@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: InteractPage(),
+      home: BasicsPage(),
     );
   }
 }
@@ -55,49 +55,56 @@ class CardItem {
   });
 }
 
-class BasicsPage extends StatelessWidget {
+class BasicsPage extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() => BasicsPageState();
+}
+
+class BasicsPageState extends State<BasicsPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  Color backgroundColor = Colors.white;
+  Color TextColor = Colors.black;
+
   List<CardItem> items = [
     CardItem(
-      URLImage: "https://www.pexels.com/photo/woman-in-collared-shirt-774909/", 
-      name: "christy"
+      URLImage: "images/christy.jpg",
+      name: "Christy",
     ),
-     CardItem(
-      URLImage: "https://www.pexels.com/photo/woman-in-collared-shirt-774909/", 
-      name: "christy"
+    CardItem(
+      URLImage: "images/maggy.jpg",
+      name: "Maggy",
     ),
-     CardItem(
-      URLImage: "https://www.pexels.com/photo/woman-in-collared-shirt-774909/", 
-      name: "christy"
-    )
+    CardItem(
+      URLImage: "images/lucy.jpg",
+      name: "Lucy",
+    ),
   ];
-
-  final List<Post> posts = [
-    Post(
-      text: '',
-      imageUrl:
-          'https://images.pexels.com/photos/865002/pexels-photo-865002.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    ),
-    Post(
-      text: 'at Work',
-      imageUrl:
-          'https://images.pexels.com/photos/3861959/pexels-photo-3861959.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    ),
-    // Add more posts here...
-  ];
-
-  BasicsPage({super.key});
 
   @override
   Widget build(BuildContext context){
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Facebook Profile"),
-        leading: Icon(Icons.favorite),
-        actions: [Icon(Icons.handyman),
-        Icon(Icons.border_color)],
+        title: Text("Facebook Profile", style: TextStyle(color: TextColor),),
+        backgroundColor: backgroundColor,
+        leading: Icon(Icons.facebook, color: TextColor),
+        actions: [Icon(Icons.handyman, color: TextColor,),
+        Icon(Icons.border_color, color: TextColor)],
       ),
       body: SingleChildScrollView(
+        child: Container(
+        color: backgroundColor,
         child: Column(
         children: [
           Stack(
@@ -107,9 +114,8 @@ class BasicsPage extends StatelessWidget {
                 width: MediaQuery.sizeOf(context).width,
                 height: 200,
                 color: Colors.black,
-                child: Expanded(
-                  child:Image.asset("images/image2.jpg", fit: BoxFit.cover,)), 
-              ),
+                child: 
+                  Image.asset("images/image2.jpg", fit: BoxFit.cover,)), 
               Padding(
                 padding: EdgeInsets.only(top: 120),
                 child: Column(
@@ -125,6 +131,7 @@ class BasicsPage extends StatelessWidget {
                     Text(
                       "Otman Malki",
                       style: TextStyle(
+                        color: TextColor,
                         fontSize: size.width/15,
                         fontWeight: FontWeight.bold
                       ),
@@ -137,6 +144,7 @@ class BasicsPage extends StatelessWidget {
           Text(
             "Otman malki is a student",
             textAlign: TextAlign.left,
+            style: TextStyle(color: TextColor),
           ),
           Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -174,21 +182,53 @@ class BasicsPage extends StatelessWidget {
                     Text(
                       "About Me",
                       style: TextStyle(
-                      fontSize: size.width/15,
+                      color: TextColor,
+                      fontSize: 25,
                       fontWeight: FontWeight.bold
                     ),
                     ),
-                    IconWithDescription(
-                      icon: Icons.home,
-                      description: 'Hay Riyad, Rabat-Sale-Kenitra',
+                    SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.home,
+                          size: 30,
+                          color: TextColor,
+                          ),
+                        SizedBox(width: 10),
+                        Text(
+                          "Hay Riyad, Rabat-Sale-Kenitra",
+                          style: TextStyle(fontSize: 18, color: TextColor),
+                        ),
+                      ],
                     ),
-                    IconWithDescription(
-                      icon: Icons.work,
-                      description: 'flutter developper',
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.work,
+                          size: 30,
+                          color: TextColor,
+                          ),
+                        SizedBox(width: 10),
+                        Text(
+                          "flutter developper",
+                          style: TextStyle(fontSize: 18, color: TextColor),
+                        ),
+                      ],
                     ),
-                    IconWithDescription(
-                      icon: Icons.favorite,
-                      description: 'Celibataire',
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.favorite,
+                          size: 30,
+                          color: TextColor,
+                          ),
+                        SizedBox(width: 10),
+                        Text(
+                          "celibataire",
+                          style: TextStyle(fontSize: 18, color: TextColor),
+                        ),
+                      ],
                     ),
                   ],
 
@@ -202,50 +242,163 @@ class BasicsPage extends StatelessWidget {
           endIndent: 20,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Friends",
-              style: TextStyle(
-              fontSize: size.width/15,
-              fontWeight: FontWeight.bold
-              ),
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Text(
+                      "Friends",
+                      style: TextStyle(
+                        color: TextColor,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 12,width: 8),
+                Expanded(
+                  child: Container(
+                    height: 200,
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: items.length,
+                      separatorBuilder: (context, _) => SizedBox(width: 12),
+                      itemBuilder: (context, index) =>
+                          buildFriendCard(item: items[index]),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Container(
-              height: 256,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: 3,
-                separatorBuilder: (Context, _) => SizedBox(width: 12),
-                itemBuilder: (Context, index) => buildCard(item: items[index]),
-              )
-            )
-          ],  
-        )
-    ])));
+            Divider(
+              height: 20,
+              thickness: 1,
+              color: Colors.grey[300],
+              indent: 20,
+              endIndent: 20,
+            ),
+            PostContainer(),
+          ],
+        ),
+      ),
+        
+    ),
+    floatingActionButton: FloatingActionButton(
+        onPressed: () => {
+          setState(() {
+            backgroundColor = (backgroundColor == Colors.white) ? Colors.black : Colors.white;
+            TextColor = (TextColor == Colors.black) ? Colors.white : Colors.black;
+          }),
+          print("Tapped")
+        },
+        child: Icon(Icons.color_lens),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+    );
   }
 
-  Widget buildCard({required CardItem item,}) => Container(
-    width: 200,
-    color: Colors.red,
+  Container Post(){
+  return Container(
+    padding: EdgeInsets.only(bottom: 15),
+    margin: EdgeInsets.all(15),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(12),
+      color: Colors.grey,
+    ),
+    width: 500,
     child: Column(
       children: [
-        Expanded(
-          child: Image.network(
-            item.URLImage,
-            fit: BoxFit.cover,
-            )
+        SizedBox(height: 10,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            CircleAvatar(
+              radius: 30,
+              backgroundImage: AssetImage("images/testimage.jpg"),
+            ),
+            Text("Profile Name"),
+            Text("Updated 5 Minutes Ago", style: TextStyle(color: Colors.blueAccent),),
+          ],
         ),
-        SizedBox(height: 4),
-        Text(
-          item.name,
-          style: TextStyle(
-            fontSize: 12,
+        SizedBox(height: 10,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+            width: 350,
+            height: 300,
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage("images/image2.jpg"),
+              ),
+            ),
           ),
+          ],
         ),
+        Container(
+          width: 250,
+            padding: EdgeInsets.all(10),
+            child: Text("Hello this a description for the post lorem ipsum", style: TextStyle(color: Colors.blueAccent))
+        ),
+        Divider(height: 2,color: Colors.grey,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Icon(Icons.favorite),
+            Text("31 Likes"),
+            Icon(Icons.comment),
+            Text("5 Comments")
+          ],
+        )
       ],
     ),
   );
+}
+
+  Container PostContainer(){
+  return Container(
+    child: Column(
+      children: <Widget>[
+        Text("Post", style: TextStyle(
+          color: TextColor,
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+          )),
+        Post(),
+        Post()
+      ],
+    ),
+  );
+}
+
+
+  Widget buildFriendCard({required CardItem item}) => Column(
+        children: [
+          Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage(item.URLImage),
+              ),
+            ),
+          ),
+          SizedBox(height: 8),
+          Text(
+            item.name,
+            style: TextStyle(fontSize: 12, color: TextColor),
+          ),
+        ],
+      );
+
+  
 
   CircleAvatar MyProfile(){
     return CircleAvatar(
